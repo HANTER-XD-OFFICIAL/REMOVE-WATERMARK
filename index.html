@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RASEL AI Watermark Remover - Premium AI Media Restoration</title>
-    <meta name="description" content="AI-powered solution to detect and remove unwanted watermarks from your images seamlessly.">
+    <meta name="description" content="Premium AI-powered solution to detect and remove unwanted watermarks from your images seamlessly.">
     
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -37,13 +37,17 @@
     </script>
 
     <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
+    <!-- Styles for Advanced Custom UI components -->
     <style type="text/css">
         body {
             font-family: 'Inter', sans-serif;
         }
         
+        /* Glassmorphism utility classes */
         .glass-panel {
             background: rgba(15, 10, 30, 0.65);
             backdrop-filter: blur(12px);
@@ -51,6 +55,14 @@
             border: 1px solid rgba(255, 255, 255, 0.08);
         }
 
+        .light .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(15, 23, 42, 0.08);
+        }
+
+        /* Ambient glow animations */
         @keyframes pulse-glow {
             0%, 100% { opacity: 0.4; transform: scale(1); }
             50% { opacity: 0.8; transform: scale(1.05); }
@@ -60,6 +72,7 @@
             animation: pulse-glow 8s infinite ease-in-out;
         }
 
+        /* Custom scrollbar */
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -77,18 +90,19 @@
 </head>
 <body class="bg-cyber-bg text-slate-100 transition-colors duration-300 overflow-x-hidden min-h-screen">
 
-    <!-- Ambient Background Lights -->
+    <!-- Ambient Glowing Background Orbs -->
     <div class="absolute inset-0 overflow-hidden pointer-events-none z-0">
         <div class="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] rounded-full bg-gradient-to-br from-purple-900/20 to-indigo-900/10 blur-[120px] ambient-glow"></div>
         <div class="absolute top-[30%] right-[-10%] w-[45vw] h-[45vw] rounded-full bg-gradient-to-br from-cyan-900/20 to-blue-900/10 blur-[120px] ambient-glow" style="animation-delay: -3s;"></div>
+        <div class="absolute bottom-[-10%] left-[20%] w-[40vw] h-[40vw] rounded-full bg-gradient-to-br from-fuchsia-950/20 to-purple-900/10 blur-[120px] ambient-glow" style="animation-delay: -5s;"></div>
     </div>
 
-    <!-- Header Navigation -->
+    <!-- Navigation Header -->
     <header class="sticky top-0 z-50 glass-panel border-b border-white/5 transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             <!-- Brand Logo -->
             <a href="#" class="flex items-center space-x-3 group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cyber-primary to-cyber-secondary flex items-center justify-center shadow-neon-purple">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cyber-primary to-cyber-secondary flex items-center justify-center shadow-neon-purple group-hover:scale-105 transition-transform">
                     <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zM4 19.235v-.11a6.375 6.375 0 0112.75 0v.109A12.318 12.318 0 0110.374 21c-2.331 0-4.512-.645-6.374-1.766z"></path></svg>
                 </div>
                 <div class="flex flex-col">
@@ -97,20 +111,33 @@
                 </div>
             </a>
 
-            <!-- Navigation Menu -->
+            <!-- Navigation Links -->
             <nav class="hidden md:flex items-center space-x-8">
                 <a href="#dashboard" class="text-sm font-medium text-slate-300 hover:text-white transition-colors">AI Studio</a>
                 <a href="#features" class="text-sm font-medium text-slate-300 hover:text-white transition-colors">Features</a>
                 <a href="#pricing" class="text-sm font-medium text-slate-300 hover:text-white transition-colors">Pricing</a>
                 <a href="#faq" class="text-sm font-medium text-slate-300 hover:text-white transition-colors">FAQ</a>
+                <a href="#contact" class="text-sm font-medium text-slate-300 hover:text-white transition-colors">Contact</a>
             </nav>
 
-            <!-- Dynamic Membership Status -->
+            <!-- Secondary Actions (Theme, Active Subscription Badge, Upgrade) -->
             <div class="flex items-center space-x-4">
+                <!-- Status Badge -->
                 <div id="user-status-badge" class="px-3 py-1.5 rounded-full text-xs font-bold border flex items-center space-x-1.5 bg-rose-500/10 text-rose-400 border-rose-500/20">
                     <span class="w-2 h-2 rounded-full bg-rose-400 animate-pulse"></span>
-                    <span>Free Plan</span>
+                    <span>Free Account</span>
                 </div>
+
+                <!-- Theme Toggle Button -->
+                <button id="theme-toggle" class="p-2 rounded-lg bg-white/5 border border-white/10 text-slate-300 hover:text-white hover:bg-white/10 transition-all" aria-label="Toggle Theme">
+                    <svg id="theme-sun" class="w-4 h-4 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"></path></svg>
+                    <svg id="theme-moon" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"></path></svg>
+                </button>
+
+                <!-- Auth Button -->
+                <button onclick="toggleAuthModal()" class="hidden sm:inline-flex text-xs font-semibold uppercase tracking-wider px-4 py-2 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-slate-200 transition-all">
+                    Account
+                </button>
 
                 <button id="header-upgrade-btn" onclick="openPaymentModal()" class="px-4 py-2 rounded-lg bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 text-xs font-bold uppercase tracking-wider transition-all shadow-md">
                     Upgrade ($1)
@@ -122,60 +149,63 @@
     <main class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-24">
 
         <!-- 1. Hero Section -->
-        <section class="text-center relative py-12 lg:py-16 flex flex-col items-center">
+        <section class="text-center relative py-12 lg:py-20 flex flex-col items-center">
             <div class="inline-flex items-center space-x-2 px-3 py-1.5 rounded-full glass-panel mb-6 border-white/10 shadow-neon-blue">
                 <span class="w-2 h-2 rounded-full bg-cyber-secondary animate-pulse"></span>
-                <span class="text-xs font-semibold uppercase tracking-widest text-cyber-secondary">Next-Gen AI Restoration</span>
+                <span class="text-xs font-semibold uppercase tracking-widest text-cyber-secondary">Next-Gen AI Media Engine</span>
             </div>
             
-            <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight max-w-4xl leading-tight">
+            <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight max-w-4xl leading-tight">
                 Remove Unwanted<br>
-                <span class="bg-gradient-to-r from-cyber-primary via-cyber-accent to-cyber-secondary bg-clip-text text-transparent">Watermarks Instantly with AI</span>
+                <span class="bg-gradient-to-r from-cyber-primary via-cyber-accent to-cyber-secondary bg-clip-text text-transparent">Watermarks with AI</span>
             </h1>
 
-            <p class="mt-6 text-base text-slate-400 max-w-2xl">
-                Automatically eliminate watermarks, text overlays, and dynamic brand logos from your assets. Our deep inpainting neural network seamlessly restores original background textures.
+            <p class="mt-6 text-base sm:text-lg text-slate-400 max-w-2xl">
+                Automatically detect, isolate, and remove watermarks from images. Our deep learning algorithms classify watermark formats and reconstruct background pixels smoothly.
             </p>
 
-            <div class="mt-8">
-                <a href="#dashboard" class="px-8 py-4 rounded-xl bg-gradient-to-r from-cyber-primary to-cyber-secondary text-white font-semibold shadow-neon-purple hover:scale-105 transition-all text-center inline-flex items-center space-x-2">
+            <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 w-full max-w-md">
+                <a href="#dashboard" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-cyber-primary to-cyber-secondary hover:from-purple-600 hover:to-cyan-500 text-white font-semibold shadow-neon-purple hover:shadow-neon-blue transform hover:-translate-y-0.5 transition-all text-center flex items-center justify-center space-x-2">
                     <span>Launch AI Studio</span>
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"></path></svg>
                 </a>
+                <a href="#features" class="w-full sm:w-auto px-8 py-4 rounded-xl glass-panel hover:bg-white/10 text-slate-300 font-semibold border-white/10 text-center transition-all">Explore Tech</a>
             </div>
         </section>
 
-        <!-- 2. AI Upload & Control Studio -->
+        <!-- 2. Upload Dashboard Section -->
         <section id="dashboard" class="scroll-mt-24 space-y-8">
-            <div class="text-center max-w-2xl mx-auto space-y-2">
+            <div class="text-center max-w-2xl mx-auto space-y-3">
                 <h2 class="text-3xl font-extrabold">AI Studio Interface</h2>
-                <p class="text-slate-400 text-sm">Upload your target image to begin real-time restoration processing telemetry.</p>
+                <p class="text-slate-400 text-sm">Upload your media and let RASEL AI compute pixel inpainting dynamically.</p>
             </div>
 
+            <!-- Upload Matrix Area -->
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-                <!-- Dropzone Input Form -->
-                <div class="lg:col-span-7 glass-panel rounded-2xl p-6 space-y-6">
-                    <div id="dropzone" class="border-2 border-dashed border-white/10 hover:border-cyber-secondary/50 rounded-xl p-8 text-center transition-all cursor-pointer bg-white/[0.01] relative overflow-hidden group">
+                <!-- Dropzone & Configurations -->
+                <div class="lg:col-span-7 glass-panel rounded-2xl p-6 sm:p-8 space-y-6">
+                    <div id="dropzone" class="border-2 border-dashed border-white/10 hover:border-cyber-secondary/50 rounded-xl p-8 sm:p-12 text-center transition-all cursor-pointer bg-white/[0.01] relative overflow-hidden group">
                         <input type="file" id="file-input" accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer z-20">
-                        <div class="space-y-4">
+                        <div class="space-y-4 z-10 relative">
                             <div class="w-16 h-16 rounded-full bg-cyber-primary/10 text-cyber-primary flex items-center justify-center mx-auto group-hover:scale-110 transition-transform">
                                 <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 16.5V9.75m0 0l3 3m-3-3l-3 3M6.75 19.5a4.5 4.5 0 01-1.41-8.775 5.25 5.25 0 0110.233-2.33 3 3 0 013.758 3.848A3.752 3.752 0 0118 19.5H6.75z"></path></svg>
                             </div>
                             <div>
-                                <h4 class="text-base font-semibold text-slate-200">Drag & drop your image or browse</h4>
+                                <h4 class="text-base font-semibold text-slate-200">Drag & drop your media or browse</h4>
                                 <p class="text-xs text-slate-400 mt-1">Supports JPEG, PNG, WEBP (Max 10MB)</p>
                             </div>
                         </div>
                     </div>
 
-                    <!-- File Meta Info Panel -->
+                    <!-- File Info Frame -->
                     <div id="file-info-panel" class="hidden glass-panel border-white/10 rounded-xl p-4 flex items-center justify-between">
                         <div class="flex items-center space-x-3 min-w-0">
                             <div class="p-2 rounded-lg bg-white/5 text-cyber-secondary">
                                 <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375 0 11-.75 0 .375 0 01.75 0z"></path></svg>
                             </div>
                             <div class="truncate">
-                                <p id="file-name" class="text-xs font-semibold text-slate-200 truncate">sample.png</p>
-                                <p id="file-size" class="text-[10px] text-slate-400">0.0 MB</p>
+                                <p id="file-name" class="text-xs font-semibold text-slate-200 truncate">sample_media.png</p>
+                                <p id="file-size" class="text-[10px] text-slate-400">1.2 MB</p>
                             </div>
                         </div>
                         <button onclick="resetPipeline()" class="p-1 rounded-md text-slate-400 hover:text-rose-400 transition-colors">
@@ -183,38 +213,85 @@
                         </button>
                     </div>
 
+                    <!-- Watermark Platform Detector Controls -->
                     <div class="space-y-4">
+                        <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400">Watermark Signature Classification</label>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <!-- Detect Dropdown Selector -->
+                            <div>
+                                <label class="block text-[10px] text-slate-400 mb-1">Watermark App/Platform Source</label>
+                                <select id="watermark-app-select" class="w-full bg-white/5 border border-white/10 rounded-lg text-xs px-3 py-2.5 text-slate-200 focus:outline-none focus:ring-1 focus:ring-cyber-secondary">
+                                    <option value="auto" class="bg-slate-900">Auto-Detect Source</option>
+                                    <option value="tiktok" class="bg-slate-900">TikTok Video Tag</option>
+                                    <option value="shutterstock" class="bg-slate-900">Shutterstock Asset Overlay</option>
+                                    <option value="getty" class="bg-slate-900">Getty Images Logo</option>
+                                    <option value="instagram" class="bg-slate-900">Instagram Handle</option>
+                                    <option value="canva" class="bg-slate-900">Canva Asset Grid</option>
+                                    <option value="custom" class="bg-slate-900">Custom Text / Branding</option>
+                                </select>
+                            </div>
+
+                            <!-- Override Input field -->
+                            <div>
+                                <label class="block text-[10px] text-slate-400 mb-1">Custom Text Override (Optional)</label>
+                                <input id="custom-text-input" type="text" placeholder="Enter custom watermark text..." class="w-full bg-white/5 border border-white/10 rounded-lg text-xs px-3 py-2.5 text-slate-200 focus:outline-none focus:ring-1 focus:ring-cyber-secondary">
+                            </div>
+                        </div>
+
+                        <!-- Precision Parameters -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                            <div>
+                                <label class="block text-[10px] text-slate-400 mb-1">Inpaint Precision</label>
+                                <select class="w-full bg-white/5 border border-white/10 rounded-lg text-xs px-3 py-2 text-slate-200 focus:outline-none">
+                                    <option class="bg-slate-900">Standard Synthesis</option>
+                                    <option class="bg-slate-900">High Fidelity (Slow)</option>
+                                    <option class="bg-slate-900">Deep Convolutional</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-[10px] text-slate-400 mb-1">Detection Threshold</label>
+                                <input type="range" min="1" max="100" value="75" class="w-full h-1 bg-white/10 rounded-lg appearance-none cursor-pointer accent-cyber-primary mt-3">
+                            </div>
+                        </div>
+
                         <button id="process-btn" disabled class="w-full py-4 rounded-xl bg-slate-800 text-slate-400 font-bold tracking-wider uppercase text-xs transition-all flex items-center justify-center space-x-2 cursor-not-allowed">
                             <span>Process & Remove Watermark</span>
                         </button>
                     </div>
                 </div>
 
-                <!-- Interactive Processing Monitor -->
-                <div class="lg:col-span-5 glass-panel rounded-2xl p-6 flex flex-col justify-between min-h-[400px]">
+                <!-- 3. AI Processing Area (Visualizer Panel) -->
+                <div class="lg:col-span-5 glass-panel rounded-2xl p-6 sm:p-8 space-y-6 flex flex-col justify-between min-h-[400px]">
                     <div class="space-y-4">
                         <div class="flex items-center justify-between">
-                            <h3 class="text-sm font-bold tracking-wider uppercase text-slate-300">Live AI Telemetry</h3>
+                            <h3 class="text-sm font-bold tracking-wider uppercase text-slate-300">Live Processing Feed</h3>
                             <span id="proc-badge" class="px-2.5 py-1 rounded-full text-[10px] font-semibold bg-white/5 text-slate-400 tracking-wider">STANDBY</span>
                         </div>
 
+                        <!-- Graphic Telemetry Monitor -->
                         <div class="relative rounded-xl border border-white/5 bg-black/40 overflow-hidden aspect-video flex items-center justify-center">
+                            <!-- Placeholder state -->
                             <div id="sandbox-placeholder" class="text-center p-4 space-y-2">
                                 <svg class="w-8 h-8 text-slate-600 mx-auto animate-pulse" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                                <p class="text-xs text-slate-500">No active feed. Select an image file to begin analysis.</p>
+                                <p class="text-xs text-slate-500">No active feed. Upload a file to view telemetry.</p>
                             </div>
 
+                            <!-- Preview Sandbox -->
                             <div id="sandbox-preview-container" class="hidden w-full h-full relative">
-                                <img id="sandbox-img" class="w-full h-full object-contain" src="" alt="Telemetry output">
+                                <img id="sandbox-img" class="w-full h-full object-contain" src="" alt="Live telemetry visualization">
                                 <div id="laser-line" class="absolute left-0 right-0 h-0.5 bg-cyan-400 shadow-[0_0_10px_#06b6d4] top-0 hidden"></div>
+                                <div id="detection-box" class="absolute hidden border border-dashed border-rose-500 bg-rose-500/10 text-[8px] font-mono text-rose-400 p-1 pointer-events-none" style="top: 25%; left: 30%; width: 40%; height: 20%;">
+                                    <span id="detected-tag-label">SIGNATURE IDENTIFIED: AUTO</span>
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="space-y-4 mt-6">
+                    <!-- Progress state tracker -->
+                    <div class="space-y-4">
                         <div class="space-y-2">
                             <div class="flex justify-between text-xs text-slate-400">
-                                <span id="pipeline-status">System Standby</span>
+                                <span id="pipeline-status">Pipeline Ready</span>
                                 <span id="pipeline-percent">0%</span>
                             </div>
                             <div class="w-full bg-white/5 h-1.5 rounded-full overflow-hidden">
@@ -222,9 +299,9 @@
                             </div>
                         </div>
 
-                        <!-- Terminal Output logs -->
+                        <!-- Telemetry logs -->
                         <div class="bg-black/50 rounded-lg p-3 border border-white/5 font-mono text-[10px] text-slate-400 space-y-1 h-24 overflow-y-auto">
-                            <div>&gt; System loaded. Ready for ingestion.</div>
+                            <div>&gt; System loaded. Signature classification online.</div>
                             <div id="log-feed"></div>
                         </div>
                     </div>
@@ -232,28 +309,28 @@
             </div>
         </section>
 
-        <!-- 3. Before & After Interactive Slider -->
+        <!-- 4. Before & After Comparison Section -->
         <section id="comparison-section" class="scroll-mt-24 space-y-8 hidden">
-            <div class="text-center max-w-2xl mx-auto space-y-2">
-                <h2 class="text-3xl font-extrabold">Before & After Output</h2>
-                <p id="output-mode-description" class="text-slate-400 text-sm">Processing complete. Drag the slider to compare results.</p>
+            <div class="text-center max-w-2xl mx-auto space-y-3">
+                <h2 class="text-3xl font-extrabold">Interactive AI Comparison</h2>
+                <p id="output-mode-description" class="text-slate-400 text-sm">Drag the slider to compare original upload and AI reconstruction results.</p>
             </div>
 
             <div class="max-w-3xl mx-auto">
                 <div id="comparison-container" class="relative rounded-2xl overflow-hidden aspect-[16/10] border border-white/10 select-none shadow-2xl">
                     <!-- Before Image -->
                     <div class="absolute inset-0">
-                        <img id="comp-before-img" class="w-full h-full object-cover" src="" alt="Before image">
-                        <div class="absolute top-4 left-4 bg-black/60 px-2.5 py-1 rounded text-[10px] font-bold tracking-widest text-rose-400 uppercase">Original Upload</div>
+                        <img id="comp-before-img" class="w-full h-full object-cover" src="" alt="Before Restoration">
+                        <div class="absolute top-4 left-4 bg-black/60 px-2.5 py-1 rounded text-[10px] font-bold tracking-widest text-rose-400 border border-rose-500/20 uppercase">Before</div>
                     </div>
 
                     <!-- After Image -->
                     <div id="comp-after-wrapper" class="absolute inset-0 pointer-events-none" style="clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);">
-                        <img id="comp-after-img" class="w-full h-full object-cover" src="" alt="After image">
-                        <div class="absolute top-4 right-4 bg-black/60 px-2.5 py-1 rounded text-[10px] font-bold tracking-widest text-emerald-400 uppercase">AI Remastered</div>
+                        <img id="comp-after-img" class="w-full h-full object-cover" src="" alt="After Restoration">
+                        <div class="absolute top-4 right-4 bg-black/60 px-2.5 py-1 rounded text-[10px] font-bold tracking-widest text-emerald-400 border border-emerald-500/20 uppercase">After</div>
                     </div>
 
-                    <!-- Interactive Slider Bar -->
+                    <!-- Slide Controller Handle -->
                     <div id="comp-slider" class="absolute top-0 bottom-0 w-0.5 bg-white shadow-[0_0_10px_rgba(255,255,255,0.8)] cursor-ew-resize flex items-center justify-center z-30" style="left: 50%;">
                         <div class="w-8 h-8 rounded-full bg-slate-900 border border-white text-white flex items-center justify-center shadow-lg transform -translate-x-1/2">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 15L12 18.75 15.75 15m-7.5-6L12 5.25 15.75 9"></path></svg>
@@ -261,153 +338,300 @@
                     </div>
                 </div>
 
-                <!-- Alert Message & Controls -->
+                <!-- Export Controls -->
                 <div class="mt-6 flex flex-wrap items-center justify-between gap-4">
                     <div id="free-mode-alert" class="hidden text-xs text-amber-400 font-medium">
-                        ⚠️ You are currently using a Free Account. Upgrade to Premium to completely remove watermarks without branding.
+                        ⚠️ You are currently using a Free Account. Upgrade to Premium to completely remove branding watermarks.
                     </div>
                     <div class="flex items-center space-x-3 ml-auto">
-                        <button onclick="triggerDownload()" class="px-6 py-2.5 rounded-lg bg-gradient-to-r from-cyber-primary to-cyber-secondary hover:shadow-neon-purple text-white font-semibold text-xs flex items-center space-x-2">
+                        <button onclick="triggerDownloadResult()" class="px-6 py-2.5 rounded-lg bg-gradient-to-r from-cyber-primary to-cyber-secondary hover:shadow-neon-purple text-white font-semibold text-xs flex items-center space-x-2">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"></path></svg>
-                            <span>Download Image</span>
+                            <span>Download Current Image</span>
                         </button>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 4. Pricing / Packages -->
-        <section id="pricing" class="scroll-mt-24 space-y-12">
-            <div class="text-center max-w-3xl mx-auto space-y-4">
-                <span class="text-xs font-semibold uppercase tracking-widest text-cyber-secondary">Pricing Plans</span>
-                <h2 class="text-3xl sm:text-4xl font-extrabold">Choose Your Plan</h2>
-                <p class="text-slate-400 text-sm">Acquire premium lifetime access to our AI tools at a highly affordable price point.</p>
+        <!-- 5. Workspace Directory (Logged from LocalStorage) -->
+        <section class="scroll-mt-24 space-y-6">
+            <div class="flex items-center justify-between border-b border-white/5 pb-4">
+                <div>
+                    <h3 class="text-xl font-bold">Personal Workspace Directory</h3>
+                    <p class="text-xs text-slate-400 mt-1">Stored workspace configurations processed locally on your system.</p>
+                </div>
+                <button onclick="clearAllHistory()" class="text-xs text-rose-400 hover:text-rose-300 font-semibold">Purge Workspace Records</button>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
-                <!-- Free Plan Card -->
-                <div class="glass-panel rounded-2xl p-8 border-white/5 flex flex-col justify-between space-y-6">
-                    <div class="space-y-4">
-                        <span class="text-xs font-semibold text-slate-400 uppercase tracking-widest">Basic Trial</span>
-                        <h3 class="text-2xl font-bold">Free Mode</h3>
-                        <p class="text-xs text-slate-400">Test AI algorithm speed and capabilities with free trial constraints.</p>
-                        <div class="py-4 border-y border-white/5">
-                            <span class="text-4xl font-extrabold text-white">$0</span>
-                            <span class="text-xs text-slate-400">/ Free</span>
-                        </div>
-                        <ul class="space-y-2.5 text-xs text-slate-300">
-                            <li class="flex items-center space-x-2">
-                                <span class="w-1.5 h-1.5 rounded-full bg-cyber-secondary"></span>
-                                <span>Unlimited image processing pipeline</span>
-                            </li>
-                            <li class="flex items-center space-x-2 text-rose-400 font-semibold">
-                                <span class="w-1.5 h-1.5 rounded-full bg-rose-400"></span>
-                                <span>Output contains RASEL AI brand watermark</span>
-                            </li>
-                        </ul>
-                    </div>
-                    <a href="#dashboard" class="w-full py-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-center font-bold text-xs uppercase text-slate-200 block transition-all">Use Free Mode</a>
-                </div>
-
-                <!-- Premium Plan Card -->
-                <div class="glass-panel rounded-2xl p-8 border-amber-500/30 shadow-neon-purple relative flex flex-col justify-between space-y-6">
-                    <div class="absolute -top-3 right-6 bg-amber-500 text-slate-950 px-3 py-1 rounded-full text-[9px] font-extrabold uppercase tracking-widest">Popular</div>
-                    <div class="space-y-4">
-                        <span class="text-xs font-semibold text-amber-400 uppercase tracking-widest">Full Access</span>
-                        <h3 class="text-2xl font-bold">Premium Lifetime</h3>
-                        <p class="text-xs text-slate-300">Lifetime watermark-free processing with high-performance outputs.</p>
-                        <div class="py-4 border-y border-white/5">
-                            <span class="text-4xl font-extrabold text-white">$1</span>
-                            <span class="text-xs text-slate-400">/ One-time fee</span>
-                        </div>
-                        <ul class="space-y-2.5 text-xs text-slate-200">
-                            <li class="flex items-center space-x-2">
-                                <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
-                                <span>100% watermark-free clean output</span>
-                            </li>
-                            <li class="flex items-center space-x-2">
-                                <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
-                                <span>High resolution (4K HD) output support</span>
-                            </li>
-                            <li class="flex items-center space-x-2">
-                                <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
-                                <span>High-speed priority GPU processing queue</span>
-                            </li>
-                        </ul>
-                    </div>
-                    <button onclick="openPaymentModal()" class="w-full py-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 font-extrabold text-xs uppercase tracking-wider block transition-all hover:opacity-90">Upgrade for $1 Now</button>
+            <!-- Workspace Cards Grid -->
+            <div id="history-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Fallback empty state -->
+                <div id="history-empty" class="col-span-full py-12 text-center glass-panel rounded-2xl border-white/5">
+                    <p class="text-slate-500 text-sm">No files in directory. Complete an AI process to log metadata.</p>
                 </div>
             </div>
         </section>
 
-        <!-- 5. Features Grid Section -->
+        <!-- 6. Features Grid Section -->
         <section id="features" class="scroll-mt-24 space-y-12">
             <div class="text-center max-w-3xl mx-auto space-y-4">
                 <span class="text-xs font-semibold uppercase tracking-widest text-cyber-primary">Enterprise Standard</span>
-                <h2 class="text-3xl font-extrabold">Professional Features</h2>
-                <p class="text-slate-400 text-sm">Advanced neural network architectures engineered to cleanly restore complex watermark patterns.</p>
+                <h2 class="text-3xl sm:text-4xl font-extrabold">Designed For Complex Workflows</h2>
+                <p class="text-slate-400 text-sm sm:text-base">Modern AI architectures refined to manage complicated layouts, dynamic logo motions, and textured backdrops.</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Card 1 -->
-                <div class="glass-panel rounded-2xl p-6 border-white/5 space-y-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Feature Card 1 -->
+                <div class="glass-panel rounded-2xl p-6 border-white/5 hover:border-cyber-primary/40 transition-all hover:-translate-y-1 space-y-4">
                     <div class="w-12 h-12 rounded-xl bg-cyber-primary/10 text-cyber-primary flex items-center justify-center">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z"></path></svg>
                     </div>
-                    <h3 class="text-lg font-bold">Auto Area Detection</h3>
-                    <p class="text-xs text-slate-400 leading-relaxed">AI models scan and isolate bounding regions of watermarks dynamically.</p>
+                    <h3 class="text-lg font-bold">Smart App Recognition</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">AI scanners analyze logo positions, bounding text sizes, and font parameters to auto-classify the watermark host platform.</p>
                 </div>
 
-                <!-- Card 2 -->
-                <div class="glass-panel rounded-2xl p-6 border-white/5 space-y-4">
+                <!-- Feature Card 2 -->
+                <div class="glass-panel rounded-2xl p-6 border-white/5 hover:border-cyber-secondary/40 transition-all hover:-translate-y-1 space-y-4">
                     <div class="w-12 h-12 rounded-xl bg-cyber-secondary/10 text-cyber-secondary flex items-center justify-center">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 21l8.904-4.452L18 11.25 9.813 15.904z"></path></svg>
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 21l8.904-4.452L18 11.25 9.813 15.904z"></path><path stroke-linecap="round" stroke-linejoin="round" d="M18 11.25a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                     </div>
-                    <h3 class="text-lg font-bold">High Quality Restoration</h3>
-                    <p class="text-xs text-slate-400 leading-relaxed">Dynamic texturing restores the background underneath with zero visual degradation.</p>
+                    <h3 class="text-lg font-bold">AI Content Restoration</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">Inpaint neural engines re-synthesize texture patterns so that original high-frequency details are restored.</p>
                 </div>
 
-                <!-- Card 3 -->
-                <div class="glass-panel rounded-2xl p-6 border-white/5 space-y-4">
+                <!-- Feature Card 3 -->
+                <div class="glass-panel rounded-2xl p-6 border-white/5 hover:border-cyber-accent/40 transition-all hover:-translate-y-1 space-y-4">
                     <div class="w-12 h-12 rounded-xl bg-cyber-accent/10 text-cyber-accent flex items-center justify-center">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+                    </div>
+                    <h3 class="text-lg font-bold">Adaptive Text Removal</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">Enables manual system target overrides to focus parameters specifically on custom user text or watermark platforms.</p>
+                </div>
+
+                <!-- Feature Card 4 -->
+                <div class="glass-panel rounded-2xl p-6 border-white/5 hover:border-cyber-primary/40 transition-all hover:-translate-y-1 space-y-4">
+                    <div class="w-12 h-12 rounded-xl bg-cyber-primary/10 text-cyber-primary flex items-center justify-center">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9"></path></svg>
+                    </div>
+                    <h3 class="text-lg font-bold">High Quality Export</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">Exports match original resolutions and compressions, without rendering degradation or downscaling issues.</p>
+                </div>
+
+                <!-- Feature Card 5 -->
+                <div class="glass-panel rounded-2xl p-6 border-white/5 hover:border-cyber-secondary/40 transition-all hover:-translate-y-1 space-y-4">
+                    <div class="w-12 h-12 rounded-xl bg-cyber-secondary/10 text-cyber-secondary flex items-center justify-center">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"></path></svg>
                     </div>
-                    <h3 class="text-lg font-bold">Superfast Processing</h3>
-                    <p class="text-xs text-slate-400 leading-relaxed">GPU acceleration ensures rapid parallel processing and real-time feedback.</p>
+                    <h3 class="text-lg font-bold">Fast Parallel Inference</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">Compute pipelines are built upon optimized webGPU frameworks, scaling output speed under 1.8 seconds.</p>
+                </div>
+
+                <!-- Feature Card 6 -->
+                <div class="glass-panel rounded-2xl p-6 border-white/5 hover:border-cyber-accent/40 transition-all hover:-translate-y-1 space-y-4">
+                    <div class="w-12 h-12 rounded-xl bg-cyber-accent/10 text-cyber-accent flex items-center justify-center">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3"></path></svg>
+                    </div>
+                    <h3 class="text-lg font-bold">Mobile First Fluidity</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">Fluid gesture controls and adaptable UI design formats allow on-the-go processing from any mobile screen.</p>
                 </div>
             </div>
         </section>
 
-        <!-- 6. FAQ Section -->
-        <section id="faq" class="scroll-mt-24 max-w-3xl mx-auto space-y-8">
-            <div class="text-center space-y-2">
-                <h2 class="text-3xl font-extrabold">Frequently Asked Questions</h2>
-                <p class="text-slate-400 text-sm">Common inquiries regarding our platform.</p>
+        <!-- 7. Pricing Section -->
+        <section id="pricing" class="scroll-mt-24 space-y-12">
+            <div class="text-center max-w-3xl mx-auto space-y-4">
+                <span class="text-xs font-semibold uppercase tracking-widest text-cyber-secondary">Transparent Cost Matrix</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold">Tailored For Any Volume</h2>
+                <p class="text-slate-400 text-sm">Start free or license premium capabilities designed to match your asset workflow.</p>
             </div>
 
-            <div class="space-y-4">
-                <div class="glass-panel rounded-xl overflow-hidden">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Free Plan -->
+                <div class="glass-panel rounded-2xl p-8 border-white/5 hover:border-white/10 transition-all flex flex-col justify-between space-y-6">
+                    <div class="space-y-4">
+                        <span class="text-xs font-semibold uppercase tracking-widest text-slate-400">Personal Evaluation</span>
+                        <h3 class="text-2xl font-bold">Free Tier</h3>
+                        <p class="text-xs text-slate-400">Evaluate engine output characteristics on single assets.</p>
+                        <div class="py-4 border-y border-white/5">
+                            <span class="text-4xl font-extrabold text-white">$0</span>
+                            <span class="text-xs text-slate-400">/ forever</span>
+                        </div>
+                        <ul class="space-y-2.5 text-xs text-slate-300">
+                            <li class="flex items-center space-x-2">
+                                <svg class="w-4 h-4 text-cyber-secondary" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"></path></svg>
+                                <span>Auto app classification analysis</span>
+                            </li>
+                            <li class="flex items-center space-x-2 text-rose-400">
+                                <svg class="w-4 h-4 text-rose-400" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"></path></svg>
+                                <span>Output has RASEL AI brand overlay</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="#dashboard" class="w-full py-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 font-bold text-xs uppercase text-slate-200 text-center transition-all">Get Started</a>
+                </div>
+
+                <!-- Premium Plan ($1 Offer) -->
+                <div class="glass-panel rounded-2xl p-8 border-amber-500/30 shadow-neon-purple relative hover:border-amber-500 transition-all flex flex-col justify-between space-y-6">
+                    <div class="absolute -top-3.5 right-6 bg-gradient-to-r from-amber-500 to-cyber-accent px-3 py-1 rounded-full text-[9px] font-extrabold uppercase tracking-widest text-slate-950">Special Promo</div>
+                    <div class="space-y-4">
+                        <span class="text-xs font-semibold uppercase tracking-widest text-amber-400">Power Creative</span>
+                        <h3 class="text-2xl font-bold">Premium Lifetime</h3>
+                        <p class="text-xs text-slate-300">Unlimited processing power with zero watermark constraints.</p>
+                        <div class="py-4 border-y border-white/5">
+                            <span class="text-4xl font-extrabold text-white">$1</span>
+                            <span class="text-xs text-slate-400">/ lifetime</span>
+                        </div>
+                        <ul class="space-y-2.5 text-xs text-slate-200">
+                            <li class="flex items-center space-x-2">
+                                <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"></path></svg>
+                                <span>100% watermark-free output</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"></path></svg>
+                                <span>High-Speed priority GPU queue</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <button onclick="openPaymentModal()" class="w-full py-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:shadow-neon-purple text-slate-950 font-bold text-xs uppercase transition-all">Acquire Access Now</button>
+                </div>
+
+                <!-- Enterprise Plan -->
+                <div class="glass-panel rounded-2xl p-8 border-white/5 hover:border-white/10 transition-all flex flex-col justify-between space-y-6">
+                    <div class="space-y-4">
+                        <span class="text-xs font-semibold uppercase tracking-widest text-slate-400">High Volume Agencies</span>
+                        <h3 class="text-2xl font-bold">Enterprise</h3>
+                        <p class="text-xs text-slate-400">Seamless programmatic integration via REST interfaces.</p>
+                        <div class="py-4 border-y border-white/5">
+                            <span class="text-4xl font-extrabold text-white">$49</span>
+                            <span class="text-xs text-slate-400">/ monthly</span>
+                        </div>
+                        <ul class="space-y-2.5 text-xs text-slate-300">
+                            <li class="flex items-center space-x-2">
+                                <svg class="w-4 h-4 text-cyber-secondary" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"></path></svg>
+                                <span>Custom platform signature configurations</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <svg class="w-4 h-4 text-cyber-secondary" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"></path></svg>
+                                <span>Ultra-low latency API hooks</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <button class="w-full py-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 font-bold text-xs uppercase text-slate-200 transition-all">Contact Sales</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 8. FAQ Section -->
+        <section id="faq" class="scroll-mt-24 space-y-12">
+            <div class="text-center max-w-2xl mx-auto space-y-3">
+                <h2 class="text-3xl font-extrabold">Technical Information</h2>
+                <p class="text-slate-400 text-sm">Common questions regarding the underlying AI generation and safety constraints.</p>
+            </div>
+
+            <div class="max-w-3xl mx-auto space-y-4">
+                <!-- FAQ 1 -->
+                <div class="glass-panel rounded-xl border-white/5 overflow-hidden transition-all duration-300">
                     <button onclick="toggleFaq(this)" class="w-full px-6 py-5 flex items-center justify-between text-left focus:outline-none">
-                        <span class="text-sm font-semibold text-slate-200">1. Do I get lifetime access after the premium payment?</span>
-                        <svg class="w-4 h-4 text-slate-400 transform transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"></path></svg>
+                        <span class="text-sm font-semibold text-slate-200">How does the auto-detect mechanism operate?</span>
+                        <svg class="w-4 h-4 text-slate-400 transform transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"></path></svg>
                     </button>
                     <div class="max-h-0 overflow-hidden transition-all duration-300 bg-white/[0.01]">
                         <p class="px-6 py-5 text-xs text-slate-400 leading-relaxed border-t border-white/5">
-                            Yes. A single $1 (1.00 USDT/BNB) payment permanently unlocks premium features on this browser.
+                            Our network processes your image's dimensions, typical logo positions, and metadata headers. It matches these arrays against signature indexes of common web platforms (TikTok, Instagram, Shutterstock) to isolate and reconstruct the exact region.
                         </p>
                     </div>
                 </div>
 
-                <div class="glass-panel rounded-xl overflow-hidden">
+                <!-- FAQ 2 -->
+                <div class="glass-panel rounded-xl border-white/5 overflow-hidden transition-all duration-300">
                     <button onclick="toggleFaq(this)" class="w-full px-6 py-5 flex items-center justify-between text-left focus:outline-none">
-                        <span class="text-sm font-semibold text-slate-200">2. What is the difference between Free and Premium outputs?</span>
-                        <svg class="w-4 h-4 text-slate-400 transform transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"></path></svg>
+                        <span class="text-sm font-semibold text-slate-200">What is the difference between Free and Premium outputs?</span>
+                        <svg class="w-4 h-4 text-slate-400 transform transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"></path></svg>
                     </button>
                     <div class="max-h-0 overflow-hidden transition-all duration-300 bg-white/[0.01]">
                         <p class="px-6 py-5 text-xs text-slate-400 leading-relaxed border-t border-white/5">
-                            Free tier outputs feature a visual "RASEL AI - PREMIUM LOCKED" watermark overlay. Premium outputs are completely clean and pristine.
+                            Free accounts have processing constraints where outputs contain a subtle branding overlay "RASEL AI - PREMIUM LOCKED". Upgrading to Premium ($1) bypasses this completely, outputting pristine, watermark-free images.
                         </p>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 9. Contact Section -->
+        <section id="contact" class="scroll-mt-24 space-y-12">
+            <div class="text-center max-w-2xl mx-auto space-y-3">
+                <h2 class="text-3xl font-extrabold">Connect With MD RASEL</h2>
+                <p class="text-slate-400 text-sm">Have professional enterprise inquiries or software technical feedback?</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 max-w-5xl mx-auto">
+                <!-- Social Connect Grid -->
+                <div class="lg:col-span-5 grid grid-cols-2 gap-4">
+                    <!-- Email Card -->
+                    <a href="mailto:contact@raselai.com" class="glass-panel rounded-xl p-5 border-white/5 hover:border-cyber-primary hover:shadow-neon-purple transition-all flex flex-col justify-between h-36">
+                        <div class="text-cyber-primary">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"></path></svg>
+                        </div>
+                        <div>
+                            <p class="text-xs font-bold text-white">Email Support</p>
+                            <p class="text-[10px] text-slate-400">Direct Message Link</p>
+                        </div>
+                    </a>
+
+                    <!-- Telegram Card -->
+                    <a href="https://t.me/" target="_blank" class="glass-panel rounded-xl p-5 border-white/5 hover:border-cyber-secondary hover:shadow-neon-blue transition-all flex flex-col justify-between h-36">
+                        <div class="text-cyber-secondary">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.11.02-1.93 1.23-5.46 3.62-.51.35-.98.53-1.4.51-.46-.01-1.35-.26-2.01-.48-.81-.27-1.46-.42-1.4-.88.03-.24.38-.49 1.04-.74 4.07-1.77 6.79-2.94 8.15-3.5 3.89-1.61 4.7-1.89 5.23-1.9.11 0 .38.03.55.17.14.12.18.28.2.45-.02.07-.02.15-.02.22z"/></svg>
+                        </div>
+                        <div>
+                            <p class="text-xs font-bold text-white">Telegram</p>
+                            <p class="text-[10px] text-slate-400">Broadcasting & Chats</p>
+                        </div>
+                    </a>
+
+                    <!-- Facebook Card -->
+                    <a href="https://facebook.com/" target="_blank" class="glass-panel rounded-xl p-5 border-white/5 hover:border-blue-500 hover:shadow-neon-blue transition-all flex flex-col justify-between h-36">
+                        <div class="text-blue-500">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1V12h3v3h-3v6.8c4.56-.93 8-4.96 8-9.8z"/></svg>
+                        </div>
+                        <div>
+                            <p class="text-xs font-bold text-white">Facebook Page</p>
+                            <p class="text-[10px] text-slate-400">Community Social Feed</p>
+                        </div>
+                    </a>
+
+                    <!-- GitHub Card -->
+                    <a href="https://github.com/" target="_blank" class="glass-panel rounded-xl p-5 border-white/5 hover:border-cyber-accent hover:shadow-neon-purple transition-all flex flex-col justify-between h-36">
+                        <div class="text-cyber-accent">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.024A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.293 2.747-1.024 2.747-1.024.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.579.688.481C19.137 20.162 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+                        </div>
+                        <div>
+                            <p class="text-xs font-bold text-white">GitHub Repo</p>
+                            <p class="text-[10px] text-slate-400">Open-Source Source Code</p>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Form Card -->
+                <div class="lg:col-span-7 glass-panel rounded-2xl p-6 sm:p-8 space-y-4">
+                    <h4 class="text-sm font-semibold text-slate-200">Dispatch Instant Message</h4>
+                    <form class="space-y-4" onsubmit="handleContactSubmit(event)">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-[10px] text-slate-400 mb-1">Name</label>
+                                <input required type="text" placeholder="MD RASEL" class="w-full bg-white/5 border border-white/10 rounded-lg text-xs px-3 py-2.5 text-slate-200 focus:outline-none focus:ring-1 focus:ring-cyber-secondary">
+                            </div>
+                            <div>
+                                <label class="block text-[10px] text-slate-400 mb-1">Email</label>
+                                <input required type="email" placeholder="rasel@example.com" class="w-full bg-white/5 border border-white/10 rounded-lg text-xs px-3 py-2.5 text-slate-200 focus:outline-none focus:ring-1 focus:ring-cyber-secondary">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-[10px] text-slate-400 mb-1">Inquiry Details</label>
+                            <textarea required rows="4" placeholder="Specify query details here..." class="w-full bg-white/5 border border-white/10 rounded-lg text-xs px-3 py-2.5 text-slate-200 focus:outline-none focus:ring-1 focus:ring-cyber-secondary"></textarea>
+                        </div>
+                        <button type="submit" class="px-6 py-3 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 font-bold text-xs uppercase text-slate-200 transition-all">Transmit Message</button>
+                    </form>
                 </div>
             </div>
         </section>
@@ -426,8 +650,12 @@
                     <p class="text-[10px] text-slate-500">&copy; <span id="year"></span> MD RASEL. All rights reserved.</p>
                 </div>
             </div>
+
             <div class="flex flex-wrap items-center gap-6 text-[10px] font-semibold text-slate-400 tracking-widest uppercase">
-                <span>Powered by MD RASEL</span>
+                <a href="#" class="hover:text-cyber-secondary transition-colors">Privacy Policy</a>
+                <a href="#" class="hover:text-cyber-secondary transition-colors">Terms of Service</a>
+                <span class="text-slate-600">|</span>
+                <span class="text-slate-300">Powered by MD RASEL</span>
             </div>
         </div>
     </footer>
@@ -435,7 +663,32 @@
     <!-- Toast Notifications -->
     <div id="toast-container" class="fixed bottom-6 right-6 z-[100] space-y-3 pointer-events-none"></div>
 
-    <!-- 7. Premium Payment Modal Interface -->
+    <!-- Auth Modal -->
+    <div id="auth-modal" class="fixed inset-0 z-[80] hidden items-center justify-center p-4">
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-md" onclick="toggleAuthModal()"></div>
+        <div class="glass-panel w-full max-w-sm rounded-2xl p-6 relative border-white/10 shadow-2xl z-10">
+            <button onclick="toggleAuthModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            <div class="text-center space-y-2 mb-6">
+                <h3 class="text-lg font-bold">RASEL Portal Ingress</h3>
+                <p class="text-[10px] text-slate-400">Authenticate session connection</p>
+            </div>
+            <form onsubmit="handleDummyLogin(event)" class="space-y-4">
+                <div>
+                    <label class="block text-[10px] text-slate-400 mb-1">Email Coordinates</label>
+                    <input required type="email" placeholder="user@rasel.ai" class="w-full bg-white/5 border border-white/10 rounded-lg text-xs px-3 py-2.5 text-slate-200 focus:outline-none">
+                </div>
+                <div>
+                    <label class="block text-[10px] text-slate-400 mb-1">Pass-Key</label>
+                    <input required type="password" placeholder="••••••••" class="w-full bg-white/5 border border-white/10 rounded-lg text-xs px-3 py-2.5 text-slate-200 focus:outline-none">
+                </div>
+                <button type="submit" class="w-full py-3 rounded-xl bg-gradient-to-r from-cyber-primary to-cyber-secondary hover:shadow-neon-purple text-white font-bold text-xs uppercase tracking-wider transition-all">Authorize Ingress</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Binance BSC Deposit Modal -->
     <div id="payment-modal" class="fixed inset-0 z-[80] hidden items-center justify-center p-4">
         <div class="absolute inset-0 bg-black/85 backdrop-blur-md" onclick="closePaymentModal()"></div>
         <div class="glass-panel w-full max-w-lg rounded-2xl p-6 relative border-amber-500/20 shadow-2xl z-10 overflow-y-auto max-h-[95vh]">
@@ -446,20 +699,19 @@
             <div class="text-center space-y-2 mb-6">
                 <span class="text-[9px] font-bold text-amber-400 uppercase tracking-widest bg-amber-400/10 px-2.5 py-1 rounded-full">Secure Deposit Gateway</span>
                 <h3 class="text-xl font-black text-white">Upgrade to Premium Plan</h3>
-                <p class="text-xs text-slate-400">Send $1 (1 USDT / BNB) to the Binance BSC address below and submit your transaction ID for instant verification.</p>
+                <p class="text-xs text-slate-400">Send $1 (1 USDT / BNB) to the Binance BSC address below and submit your transaction ID for verification.</p>
             </div>
 
-            <!-- Address Info & QR Code -->
+            <!-- Address and QR details -->
             <div class="bg-black/30 border border-white/5 rounded-xl p-5 space-y-5 text-center">
-                <!-- QR Code Generation -->
                 <div class="flex justify-center">
                     <div class="p-3 bg-white rounded-lg">
-                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=0x9ae55cd25d3ec4bf6fe681e48de6fd1c1efb7f98" alt="BSC Address QR Code" class="w-36 h-36">
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=0x9ae55cd25d3ec4bf6fe681e48de6fd1c1efb7f98" alt="BSC QR Code" class="w-36 h-36">
                     </div>
                 </div>
 
-                <div class="space-y-2">
-                    <p class="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Network Protocols</p>
+                <div class="space-y-1">
+                    <p class="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Protocol Network</p>
                     <p class="text-xs font-semibold text-amber-400">BSC (BNB Smart Chain BEP20)</p>
                 </div>
 
@@ -474,14 +726,14 @@
                 </div>
             </div>
 
-            <!-- Validation Input and Submit Form -->
+            <!-- Verification form -->
             <form onsubmit="handlePaymentVerification(event)" class="mt-6 space-y-4">
                 <div>
                     <label class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">Transaction ID / TXID Hash</label>
-                    <input required id="txid-input" type="text" placeholder="Paste your hash here (e.g. 0x8f2d...)" class="w-full bg-white/5 border border-white/10 rounded-xl text-xs px-3.5 py-3 text-slate-200 focus:outline-none focus:ring-1 focus:ring-amber-500">
+                    <input required id="txid-input" type="text" placeholder="Paste hash here (e.g., 0x8f2d...)" class="w-full bg-white/5 border border-white/10 rounded-xl text-xs px-3.5 py-3 text-slate-200 focus:outline-none focus:ring-1 focus:ring-amber-500">
                 </div>
                 
-                <!-- Loading Screen Overlay (Simulated Block Confirmation) -->
+                <!-- Loading Confirmations -->
                 <div id="payment-loader-panel" class="hidden bg-white/5 rounded-xl p-4 space-y-3">
                     <div class="flex items-center justify-between text-xs text-amber-400 font-semibold">
                         <span id="loader-status">Verifying block transactions...</span>
@@ -490,25 +742,27 @@
                     <div class="w-full bg-white/10 h-1.5 rounded-full overflow-hidden">
                         <div id="loader-progress" class="bg-amber-400 h-full w-0 transition-all duration-300"></div>
                     </div>
-                    <p class="text-[9px] text-slate-400 font-mono">Status: Awaiting network confirmation signatures...</p>
                 </div>
 
-                <button id="verify-payment-btn" type="submit" class="w-full py-4 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 font-black text-xs uppercase tracking-widest transition-all shadow-md">
+                <button id="verify-payment-btn" type="submit" class="w-full py-4 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 font-black text-xs uppercase tracking-widest transition-all">
                     Verify & Unlock Premium
                 </button>
             </form>
         </div>
     </div>
 
-    <!-- Core Interactive Script Logic -->
+    <!-- Core Interactive Logic Script -->
     <script type="text/javascript">
         document.getElementById('year').textContent = new Date().getFullYear();
 
-        // Subscription State
+        // System state
         let isPremiumActive = false;
+        let activeUploadedFile = null;
+        let originalImageSrc = '';
+        let watermarkedImageSrc = '';
+        let historyStore = [];
 
-        // UI Component Elements
-        const dropzone = document.getElementById('dropzone');
+        // UI Components
         const fileInput = document.getElementById('file-input');
         const fileInfoPanel = document.getElementById('file-info-panel');
         const fileNameLabel = document.getElementById('file-name');
@@ -519,46 +773,20 @@
         const sandboxPreviewContainer = document.getElementById('sandbox-preview-container');
         const sandboxImg = document.getElementById('sandbox-img');
         const laserLine = document.getElementById('laser-line');
+        const detectionBox = document.getElementById('detection-box');
 
-        // State Storage
-        let activeUploadedFile = null;
-        let originalImageSrc = '';
-        let watermarkedImageSrc = '';
+        const watermarkAppSelect = document.getElementById('watermark-app-select');
+        const customTextInput = document.getElementById('custom-text-input');
 
-        // File Selection Handlers
+        // File Selection handling
         fileInput.addEventListener('change', (e) => {
-            if (e.target.files.length > 0) {
-                handleFileSelection(e.target.files[0]);
-            }
-        });
-
-        ['dragenter', 'dragover'].forEach(name => {
-            dropzone.addEventListener(name, (e) => {
-                e.preventDefault();
-                dropzone.classList.add('border-cyber-secondary');
-            });
-        });
-
-        ['dragleave', 'drop'].forEach(name => {
-            dropzone.addEventListener(name, (e) => {
-                e.preventDefault();
-                dropzone.classList.remove('border-cyber-secondary');
-            });
-        });
-
-        dropzone.addEventListener('drop', (e) => {
-            const dt = e.dataTransfer;
-            const files = dt.files;
-            if (files.length > 0) {
-                handleFileSelection(files[0]);
-            }
+            if (e.target.files.length > 0) handleFileSelection(e.target.files[0]);
         });
 
         function handleFileSelection(file) {
             activeUploadedFile = file;
             fileNameLabel.textContent = file.name;
             fileSizeLabel.textContent = (file.size / (1024 * 1024)).toFixed(2) + " MB";
-            
             fileInfoPanel.classList.remove('hidden');
             
             processBtn.disabled = false;
@@ -568,76 +796,100 @@
             const reader = new FileReader();
             reader.onload = function(event) {
                 originalImageSrc = event.target.result;
-                
-                const tempImg = new Image();
-                tempImg.onload = function() {
-                    const canvas = document.createElement('canvas');
-                    const ctx = canvas.getContext('2d');
-                    canvas.width = tempImg.width;
-                    canvas.height = tempImg.height;
-                    
-                    ctx.drawImage(tempImg, 0, 0);
-                    
-                    // Place an overlay watermark indicating "Sample Watermark" to be removed
-                    ctx.save();
-                    ctx.font = `bold ${Math.max(18, canvas.width / 20)}px sans-serif`;
-                    ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
-                    ctx.shadowColor = 'rgba(0,0,0,0.5)';
-                    ctx.shadowBlur = 8;
-                    ctx.textAlign = 'center';
-                    ctx.translate(canvas.width / 2, canvas.height / 2);
-                    ctx.rotate(-Math.PI / 8);
-                    ctx.fillText("SAMPLE WATERMARK", 0, 0);
-                    ctx.restore();
-
-                    watermarkedImageSrc = canvas.toDataURL();
-                    
-                    sandboxImg.src = watermarkedImageSrc;
-                    sandboxPlaceholder.classList.add('hidden');
-                    sandboxPreviewContainer.classList.remove('hidden');
-                    
-                    addLog(`Ingested: ${file.name} - Resolution: ${tempImg.width}x${tempImg.height}`);
-                };
-                tempImg.src = originalImageSrc;
+                renderTelemetryPreview();
             };
             reader.readAsDataURL(file);
         }
 
-        function resetPipeline() {
-            activeUploadedFile = null;
-            originalImageSrc = '';
-            watermarkedImageSrc = '';
-            fileInput.value = '';
-            
-            fileInfoPanel.classList.add('hidden');
-            processBtn.disabled = true;
-            processBtn.classList.add('bg-slate-800', 'text-slate-400', 'cursor-not-allowed');
-            processBtn.classList.remove('bg-gradient-to-r', 'from-cyber-primary', 'to-cyber-secondary', 'text-white', 'shadow-neon-purple');
-            
-            sandboxPlaceholder.classList.remove('hidden');
-            sandboxPreviewContainer.classList.add('hidden');
-            laserLine.classList.add('hidden');
-            
-            document.getElementById('proc-badge').textContent = "STANDBY";
-            document.getElementById('proc-badge').className = "px-2.5 py-1 rounded-full text-[10px] font-semibold bg-white/5 text-slate-400 tracking-wider";
-            document.getElementById('pipeline-status').textContent = "System Standby";
-            document.getElementById('pipeline-percent').textContent = "0%";
-            document.getElementById('pipeline-progress').style.width = "0%";
-            
-            document.getElementById('comparison-section').classList.add('hidden');
+        // Detect Selected Type and render it dynamically on Before Image
+        function renderTelemetryPreview() {
+            if (!originalImageSrc) return;
+
+            const selectedApp = watermarkAppSelect.value;
+            const customText = customTextInput.value.trim();
+
+            const tempImg = new Image();
+            tempImg.onload = function() {
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d');
+                canvas.width = tempImg.width;
+                canvas.height = tempImg.height;
+                ctx.drawImage(tempImg, 0, 0);
+
+                // Simulate app classification parameters
+                let tagText = "CUSTOM WATERMARK";
+                ctx.save();
+
+                if (selectedApp === 'tiktok' || (selectedApp === 'auto' && Math.random() > 0.5)) {
+                    tagText = "TIKTOK SIGNATURE DETECTED [94.2% CONFIDENCE]";
+                    ctx.font = `bold ${Math.max(14, canvas.width / 24)}px sans-serif`;
+                    ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
+                    ctx.fillText("🎵 @rasel_ai_creator", 30, 45);
+                    ctx.fillText("🎵 @rasel_ai_creator", canvas.width - 200, canvas.height - 30);
+                } else if (selectedApp === 'shutterstock') {
+                    tagText = "SHUTTERSTOCK OVERLAY DETECTED [97.8% CONFIDENCE]";
+                    ctx.font = `${Math.max(12, canvas.width / 30)}px Arial`;
+                    ctx.fillStyle = 'rgba(255, 255, 255, 0.25)';
+                    ctx.textAlign = 'center';
+                    // Draw grid repeating watermarks
+                    for (let y = 0; y < canvas.height; y += canvas.height / 3) {
+                        for (let x = 0; x < canvas.width; x += canvas.width / 3) {
+                            ctx.fillText("shutterstock", x + 50, y + 50);
+                        }
+                    }
+                } else if (selectedApp === 'getty') {
+                    tagText = "GETTY IMAGES BRAND DETECTED [99.1% CONFIDENCE]";
+                    ctx.font = `bold ${Math.max(22, canvas.width / 16)}px serif`;
+                    ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
+                    ctx.textAlign = 'center';
+                    ctx.fillText("gettyimages", canvas.width / 2, canvas.height / 2);
+                } else if (selectedApp === 'instagram') {
+                    tagText = "INSTAGRAM BADGE DETECTED [92.0% CONFIDENCE]";
+                    ctx.font = `bold ${Math.max(14, canvas.width / 24)}px sans-serif`;
+                    ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
+                    ctx.fillText("📸 @md_rasel_ai", 20, canvas.height - 25);
+                } else {
+                    // Custom / Text overrides
+                    const textToDraw = customText || "RASEL AI RESTORE";
+                    tagText = `TEXT OVERLAY DETECTED: [${textToDraw.toUpperCase()}]`;
+                    ctx.font = `bold ${Math.max(20, canvas.width / 18)}px sans-serif`;
+                    ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
+                    ctx.shadowColor = 'rgba(0,0,0,0.5)';
+                    ctx.shadowBlur = 10;
+                    ctx.textAlign = 'center';
+                    ctx.translate(canvas.width / 2, canvas.height / 2);
+                    ctx.rotate(-Math.PI / 10);
+                    ctx.fillText(textToDraw, 0, 0);
+                }
+
+                ctx.restore();
+                watermarkedImageSrc = canvas.toDataURL();
+                
+                sandboxImg.src = watermarkedImageSrc;
+                document.getElementById('detected-tag-label').textContent = tagText;
+
+                sandboxPlaceholder.classList.add('hidden');
+                sandboxPreviewContainer.classList.remove('hidden');
+            };
+            tempImg.src = originalImageSrc;
         }
 
-        // Live Processing Execution Simulation
+        // Re-calculate telemetry whenever config selection changes
+        watermarkAppSelect.addEventListener('change', renderTelemetryPreview);
+        customTextInput.addEventListener('input', renderTelemetryPreview);
+
+        // Core processing trigger
         processBtn.addEventListener('click', () => {
             if (!activeUploadedFile) return;
 
             processBtn.disabled = true;
-            addLog("Initializing pixel restoration array...");
+            addLog("Executing neural processing network...");
             document.getElementById('proc-badge').textContent = "COMPUTING";
             document.getElementById('proc-badge').className = "px-2.5 py-1 rounded-full text-[10px] font-semibold bg-cyan-500/10 text-cyan-400 tracking-wider animate-pulse";
             
             laserLine.classList.remove('hidden');
             laserLine.classList.add('animate-bounce');
+            detectionBox.classList.remove('hidden');
 
             let progress = 0;
             const progressInterval = setInterval(() => {
@@ -652,11 +904,11 @@
                 document.getElementById('pipeline-percent').textContent = `${progress}%`;
                 
                 if (progress > 10 && progress < 40) {
-                    document.getElementById('pipeline-status').textContent = "Isolating color matrices...";
+                    document.getElementById('pipeline-status').textContent = "Isolating watermark color index...";
                 } else if (progress >= 40 && progress < 70) {
-                    document.getElementById('pipeline-status').textContent = "Synthesizing underlying textures...";
-                } else if (progress >= 70 && progress < 90) {
-                    document.getElementById('pipeline-status').textContent = "Rendering final image output layers...";
+                    document.getElementById('pipeline-status').textContent = "Restoring texture fidelity patterns...";
+                } else if (progress >= 70 && progress < 95) {
+                    document.getElementById('pipeline-status').textContent = "Inpainting background variables...";
                 }
             }, 100);
         });
@@ -664,64 +916,97 @@
         function completeProcessingPipeline() {
             laserLine.classList.add('hidden');
             laserLine.classList.remove('animate-bounce');
+            detectionBox.classList.add('hidden');
             
             document.getElementById('proc-badge').textContent = "SUCCESS";
             document.getElementById('proc-badge').className = "px-2.5 py-1 rounded-full text-[10px] font-semibold bg-emerald-500/10 text-emerald-400 tracking-wider";
-            document.getElementById('pipeline-status').textContent = "AI Reconstruction Finished";
-            addLog("Core engine synthesis completed successfully.");
-            showToast("AI processing finished", "success");
+            document.getElementById('pipeline-status').textContent = "AI Restoration Finished";
+            addLog("Inpainting module execution complete.");
+            showToast("Watermark restoration finished!", "success");
 
             const compSection = document.getElementById('comparison-section');
             compSection.classList.remove('hidden');
             
             document.getElementById('comp-before-img').src = watermarkedImageSrc;
 
-            // Generate conditional output based on membership status
             if (isPremiumActive) {
-                // Pristine clean original
+                // Pristine clean original image
                 document.getElementById('comp-after-img').src = originalImageSrc;
                 document.getElementById('free-mode-alert').classList.add('hidden');
                 document.getElementById('output-mode-description').textContent = "Premium output compiled. Watermark cleanly removed.";
             } else {
-                // Free version: embeds a locked branding overlay watermark on output
+                // Free output - Inject "RASEL AI - PREMIUM LOCKED" watermark on canvas
                 const tempImg = new Image();
                 tempImg.onload = function() {
                     const canvas = document.createElement('canvas');
                     const ctx = canvas.getContext('2d');
                     canvas.width = tempImg.width;
                     canvas.height = tempImg.height;
-                    
                     ctx.drawImage(tempImg, 0, 0);
                     
-                    // Apply visual RASEL AI watermark block on output image
                     ctx.save();
-                    ctx.font = `bold ${Math.max(16, canvas.width / 24)}px sans-serif`;
-                    ctx.fillStyle = 'rgba(217, 70, 239, 0.7)'; // Accent Purple/Pink
+                    ctx.font = `bold ${Math.max(14, canvas.width / 22)}px sans-serif`;
+                    ctx.fillStyle = 'rgba(217, 70, 239, 0.7)'; // Accent Purple
                     ctx.shadowColor = 'rgba(0,0,0,0.6)';
-                    ctx.shadowBlur = 4;
+                    ctx.shadowBlur = 5;
                     ctx.textAlign = 'center';
-                    ctx.translate(canvas.width / 2, canvas.height / 2);
-                    ctx.fillText("RASEL AI - PREMIUM LOCKED", 0, 0);
+                    ctx.fillText("RASEL AI - PREMIUM LOCKED", canvas.width / 2, canvas.height / 2);
                     ctx.restore();
 
                     document.getElementById('comp-after-img').src = canvas.toDataURL();
                 };
                 tempImg.src = originalImageSrc;
                 document.getElementById('free-mode-alert').classList.remove('hidden');
-                document.getElementById('output-mode-description').textContent = "Free mode active. Outputs contain RASEL AI branding.";
+                document.getElementById('output-mode-description').textContent = "Free tier active. Upgrade to remove brand watermark overlay.";
             }
+
+            // Save to Local Workspace
+            saveToLocalHistory({
+                id: Date.now(),
+                name: activeUploadedFile.name,
+                size: (activeUploadedFile.size / (1024 * 1024)).toFixed(2) + " MB",
+                timestamp: new Date().toLocaleTimeString(),
+                original: originalImageSrc,
+                watermarked: watermarkedImageSrc
+            });
 
             compSection.scrollIntoView({ behavior: 'smooth' });
         }
 
-        // Before & After Compare Slider Drag Logic
-        const container = document.getElementById('comparison-container');
+        // Reset system pipeline
+        function resetPipeline() {
+            activeUploadedFile = null;
+            originalImageSrc = '';
+            watermarkedImageSrc = '';
+            fileInput.value = '';
+            
+            fileInfoPanel.classList.add('hidden');
+            processBtn.disabled = true;
+            processBtn.classList.add('bg-slate-800', 'text-slate-400', 'cursor-not-allowed');
+            processBtn.classList.remove('bg-gradient-to-r', 'from-cyber-primary', 'to-cyber-secondary', 'text-white', 'shadow-neon-purple');
+            
+            sandboxPlaceholder.classList.remove('hidden');
+            sandboxPreviewContainer.classList.add('hidden');
+            laserLine.classList.add('hidden');
+            detectionBox.classList.add('hidden');
+            
+            document.getElementById('proc-badge').textContent = "STANDBY";
+            document.getElementById('proc-badge').className = "px-2.5 py-1 rounded-full text-[10px] font-semibold bg-white/5 text-slate-400 tracking-wider";
+            document.getElementById('pipeline-status').textContent = "Pipeline Ready";
+            document.getElementById('pipeline-percent').textContent = "0%";
+            document.getElementById('pipeline-progress').style.width = "0%";
+            
+            document.getElementById('comparison-section').classList.add('hidden');
+        }
+
+        // Before-After Comparison dragging functions
+        const compContainer = document.getElementById('comparison-container');
         const sliderHandle = document.getElementById('comp-slider');
         const afterImageWrapper = document.getElementById('comp-after-wrapper');
         let isDragging = false;
 
         function updateSlider(clientX) {
-            const rect = container.getBoundingClientRect();
+            const rect = compContainer.getBoundingClientRect();
             const offset = clientX - rect.left;
             let percentage = (offset / rect.width) * 100;
             
@@ -734,21 +1019,81 @@
 
         sliderHandle.addEventListener('mousedown', () => isDragging = true);
         window.addEventListener('mouseup', () => isDragging = false);
-        container.addEventListener('mousemove', (e) => {
+        compContainer.addEventListener('mousemove', (e) => {
             if (!isDragging) return;
             updateSlider(e.clientX);
         });
 
         sliderHandle.addEventListener('touchstart', () => isDragging = true);
         window.addEventListener('touchend', () => isDragging = false);
-        container.addEventListener('touchmove', (e) => {
+        compContainer.addEventListener('touchmove', (e) => {
             if (!isDragging) return;
-            if (e.touches.length > 0) {
-                updateSlider(e.touches[0].clientX);
-            }
+            if (e.touches.length > 0) updateSlider(e.touches[0].clientX);
         });
 
-        // Gateway Integration & Premium State Checkers
+        // Workspace history logger functions
+        function saveToLocalHistory(item) {
+            historyStore.unshift(item);
+            if (historyStore.length > 6) historyStore.pop();
+            localStorage.setItem('rasel_workspace_history', JSON.stringify(historyStore));
+            renderWorkspaceHistory();
+        }
+
+        function renderWorkspaceHistory() {
+            const grid = document.getElementById('history-grid');
+            const emptyState = document.getElementById('history-empty');
+            
+            const existingCards = grid.querySelectorAll('.workspace-item-card');
+            existingCards.forEach(card => card.remove());
+
+            if (historyStore.length === 0) {
+                emptyState.classList.remove('hidden');
+                return;
+            }
+
+            emptyState.classList.add('hidden');
+
+            historyStore.forEach(item => {
+                const card = document.createElement('div');
+                card.className = "workspace-item-card glass-panel rounded-xl p-4 border-white/5 space-y-4 hover:border-white/10 transition-all";
+                card.innerHTML = `
+                    <div class="aspect-video w-full rounded-lg overflow-hidden bg-black/40 relative">
+                        <img src="${item.original}" class="w-full h-full object-cover">
+                        <div class="absolute top-2 right-2 bg-emerald-500 text-slate-950 text-[8px] font-black px-1.5 py-0.5 rounded">RESTORED</div>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <div class="min-w-0">
+                            <h4 class="text-xs font-bold text-slate-200 truncate">${item.name}</h4>
+                            <p class="text-[9px] text-slate-400">${item.size} • Processed at ${item.timestamp}</p>
+                        </div>
+                        <button onclick="downloadHistoryItem('${item.id}')" class="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-cyber-secondary">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"></path></svg>
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function downloadHistoryItem(id) {
+            const matched = historyStore.find(item => item.id == id);
+            if (matched) {
+                const link = document.createElement('a');
+                link.download = `restored_${matched.name}`;
+                link.href = matched.original;
+                link.click();
+                showToast("Downloading workspace asset", "success");
+            }
+        }
+
+        function clearAllHistory() {
+            historyStore = [];
+            localStorage.removeItem('rasel_workspace_history');
+            renderWorkspaceHistory();
+            showToast("Workspace history purged", "info");
+        }
+
+        // Binance BEP20 Payment Modal controllers
         function openPaymentModal() {
             document.getElementById('payment-modal').classList.remove('hidden');
             document.getElementById('payment-modal').classList.add('flex');
@@ -758,22 +1103,21 @@
             document.getElementById('payment-modal').classList.add('hidden');
             document.getElementById('payment-modal').classList.remove('flex');
             
-            // Clean dynamic structures
             document.getElementById('payment-loader-panel').classList.add('hidden');
             document.getElementById('verify-payment-btn').disabled = false;
         }
 
         function copyAddress() {
-            const address = document.getElementById('bsc-address-text').textContent;
-            navigator.clipboard.writeText(address);
-            showToast("BSC address copied to clipboard!", "success");
+            const text = document.getElementById('bsc-address-text').textContent;
+            navigator.clipboard.writeText(text);
+            showToast("BSC Address copied!", "success");
         }
 
         function handlePaymentVerification(e) {
             e.preventDefault();
             const txid = document.getElementById('txid-input').value.trim();
-            if (txid.length < 10) {
-                showToast("Please enter a valid Transaction Hash", "error");
+            if (txid.length < 12) {
+                showToast("Please input a valid BSC TXID transaction hash", "error");
                 return;
             }
 
@@ -790,24 +1134,21 @@
                     verifyProgress = 100;
                     clearInterval(verifyInterval);
                     
-                    // Finalize Validation successful state
                     setPremiumActive(true);
                     closePaymentModal();
-                    showToast("Transaction Confirmed! Premium Plan Unlocked.", "success");
-                    addLog("Payment validation success. Premium access parameters initialized.");
+                    showToast("Payment Verified! Premium Access Unlocked.", "success");
+                    addLog("Payment validation success. Premium capabilities active.");
                 }
                 
                 document.getElementById('loader-progress').style.width = `${verifyProgress}%`;
                 document.getElementById('loader-percent').textContent = `${verifyProgress}%`;
                 
                 if (verifyProgress > 20 && verifyProgress < 60) {
-                    document.getElementById('loader-status').textContent = "Scanning BSC ledger hashes...";
+                    document.getElementById('loader-status').textContent = "Scanning BSC block records...";
                 } else if (verifyProgress >= 60 && verifyProgress < 90) {
-                    document.getElementById('loader-status').textContent = "Checking confirmation blocks...";
-                } else if (verifyProgress >= 90) {
-                    document.getElementById('loader-status').textContent = "Applying persistent credentials...";
+                    document.getElementById('loader-status').textContent = "Validating wallet ledger transactions...";
                 }
-            }, 250);
+            }, 200);
         }
 
         function setPremiumActive(status) {
@@ -819,32 +1160,29 @@
 
             if (status) {
                 badge.className = "px-3 py-1.5 rounded-full text-xs font-bold border flex items-center space-x-1.5 bg-amber-500/10 text-amber-400 border-amber-500/20";
-                badge.innerHTML = `<span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span><span>Premium Account</span>`;
+                badge.innerHTML = `<span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span><span>Premium Active</span>`;
                 upgradeBtn.classList.add('hidden');
                 
-                // If a conversion run exists, update output rendering automatically
-                if (activeUploadedFile && originalImageSrc) {
-                    completeProcessingPipeline();
-                }
+                if (originalImageSrc && activeUploadedFile) completeProcessingPipeline();
             } else {
                 badge.className = "px-3 py-1.5 rounded-full text-xs font-bold border flex items-center space-x-1.5 bg-rose-500/10 text-rose-400 border-rose-500/20";
-                badge.innerHTML = `<span class="w-2 h-2 rounded-full bg-rose-400 animate-pulse"></span><span>Free Plan</span>`;
+                badge.innerHTML = `<span class="w-2 h-2 rounded-full bg-rose-400 animate-pulse"></span><span>Free Account</span>`;
                 upgradeBtn.classList.remove('hidden');
             }
         }
 
-        function triggerDownload() {
-            const finalImage = document.getElementById('comp-after-img').src;
-            if (!finalImage) return;
+        function triggerDownloadResult() {
+            const finalSrc = document.getElementById('comp-after-img').src;
+            if (!finalSrc) return;
 
             const link = document.createElement('a');
             link.download = `restored_${activeUploadedFile ? activeUploadedFile.name : 'image.png'}`;
-            link.href = finalImage;
+            link.href = finalSrc;
             link.click();
-            showToast("Downloading your file...", "success");
+            showToast("Downloading reconstructed image", "success");
         }
 
-        // Global Event Triggers
+        // Auxiliary modules
         function toggleFaq(button) {
             const body = button.nextElementSibling;
             const icon = button.querySelector('svg');
@@ -856,6 +1194,24 @@
                 body.style.maxHeight = body.scrollHeight + 'px';
                 icon.style.transform = 'rotate(180deg)';
             }
+        }
+
+        function toggleAuthModal() {
+            const modal = document.getElementById('auth-modal');
+            modal.classList.toggle('hidden');
+            modal.classList.toggle('flex');
+        }
+
+        function handleDummyLogin(e) {
+            e.preventDefault();
+            toggleAuthModal();
+            showToast("Successfully Authenticated Session!", "success");
+        }
+
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            showToast("Inquiry dispatch complete!", "success");
+            e.target.reset();
         }
 
         function addLog(text) {
@@ -887,26 +1243,51 @@
             `;
             
             container.appendChild(toast);
-            
-            setTimeout(() => {
-                toast.classList.remove('translate-y-2', 'opacity-0');
-            }, 10);
-
+            setTimeout(() => toast.classList.remove('translate-y-2', 'opacity-0'), 10);
             setTimeout(() => {
                 toast.classList.add('opacity-0', 'translate-y-2');
-                setTimeout(() => { toast.remove(); }, 300);
+                setTimeout(() => toast.remove(), 300);
             }, 3000);
         }
 
-        // Load Cached Settings on Init
+        // Theme Toggle
+        const themeBtn = document.getElementById('theme-toggle');
+        const sunIcon = document.getElementById('theme-sun');
+        const moonIcon = document.getElementById('theme-moon');
+
+        themeBtn.addEventListener('click', () => {
+            const isDark = document.documentElement.classList.toggle('dark');
+            if (isDark) {
+                document.body.classList.remove('light');
+                document.body.classList.add('bg-cyber-bg', 'text-slate-100');
+                sunIcon.classList.add('hidden');
+                moonIcon.classList.remove('hidden');
+                showToast("Dark Mode activated", "success");
+            } else {
+                document.body.classList.add('light');
+                document.body.classList.remove('bg-cyber-bg', 'text-slate-100');
+                document.body.classList.add('bg-slate-50', 'text-slate-900');
+                moonIcon.classList.add('hidden');
+                sunIcon.classList.remove('hidden');
+                showToast("Light Mode activated", "success");
+            }
+        });
+
+        // Initialize cache and validation checks
         window.onload = function() {
-            const storedPremium = localStorage.getItem('rasel_premium_active');
-            if (storedPremium === 'true') {
+            const cachedHistory = localStorage.getItem('rasel_workspace_history');
+            if (cachedHistory) {
+                historyStore = JSON.parse(cachedHistory);
+                renderWorkspaceHistory();
+            }
+
+            const cachedPremium = localStorage.getItem('rasel_premium_active');
+            if (cachedPremium === 'true') {
                 setPremiumActive(true);
             } else {
                 setPremiumActive(false);
             }
-        }
+        };
     </script>
 </body>
 </html>
